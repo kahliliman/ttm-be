@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      const { User, HotelRate } = models;
+
+      HotelBooking.belongsTo(User, { foreignKey: "user_id" });
+      HotelBooking.belongsTo(HotelRate, { foreignKey: "rate_id" });
     }
   }
   HotelBooking.init(
@@ -19,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       night_duration: DataTypes.NUMBER,
       user_id: DataTypes.UUIDV4,
       category: DataTypes.STRING,
-      rate_id: DataTypes.STRING,
+      rate_id: DataTypes.UUIDV4,
       total_price: DataTypes.NUMBER,
     },
     {

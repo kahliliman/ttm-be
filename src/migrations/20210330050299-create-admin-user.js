@@ -1,22 +1,16 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("HotelRates", {
+    await queryInterface.createTable("AdminUser", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
       },
-      hotel_id: {
-        type: Sequelize.UUID,
-      },
-      rate_name: {
+      email: {
         type: Sequelize.STRING,
       },
-      price_per_night: {
-        type: Sequelize.INTEGER,
-      },
-      created_by: {
-        type: Sequelize.UUID,
+      firebase_id: {
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,
@@ -29,6 +23,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("HotelRates");
+    await queryInterface.dropTable("AdminUser");
   },
 };

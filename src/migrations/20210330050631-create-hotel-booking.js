@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("HotelBookings", {
+    await queryInterface.createTable("HotelBooking", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -17,12 +17,20 @@ module.exports = {
       },
       user_id: {
         type: Sequelize.UUID,
+        references: {
+          model: "User",
+          key: "id",
+        },
       },
       category: {
         type: Sequelize.STRING,
       },
       rate_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
+        references: {
+          model: "HotelRate",
+          key: "id",
+        },
       },
       total_price: {
         type: Sequelize.INTEGER,
@@ -38,6 +46,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("HotelBookings");
+    await queryInterface.dropTable("HotelBooking");
   },
 };

@@ -1,22 +1,30 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Hotels", {
+    await queryInterface.createTable("HotelRate", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
       },
-      name: {
+      hotel_id: {
+        type: Sequelize.UUID,
+        references: {
+          model: "Hotel",
+          key: "id",
+        },
+      },
+      rate_name: {
         type: Sequelize.STRING,
       },
-      logo_img: {
-        type: Sequelize.STRING,
-      },
-      location: {
-        type: Sequelize.STRING,
+      price_per_night: {
+        type: Sequelize.INTEGER,
       },
       created_by: {
         type: Sequelize.UUID,
+        references: {
+          model: "AdminUser",
+          key: "id",
+        },
       },
       created_at: {
         allowNull: false,
@@ -29,6 +37,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Hotels");
+    await queryInterface.dropTable("HotelRate");
   },
 };
