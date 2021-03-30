@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/prettier"
+  ],
+  "parser": "babel-eslint",
+  "env": {
+    "node": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src"
+        ]
+      }
+    },
+    "react": {
+      "version": "999.999.999"
+    }
+  },
+  "rules": {
+    "semi": 1,
+    "no-console":0
+  }
+}

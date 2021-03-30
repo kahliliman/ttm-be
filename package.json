@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "author": "kahliliman <kahlil.iman@gmail.com>",
+  "scripts": {
+    "start": "nodemon src --exec babel-node"
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "dotenv": "^8.2.0",
