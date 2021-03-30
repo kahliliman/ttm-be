@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   Hotel.init(
     {
-      id: DataTypes.UUIDV4,
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        allowNull: false,
+        unique: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
       name: DataTypes.STRING,
       logo_img: DataTypes.STRING,
       location: DataTypes.STRING,

@@ -18,7 +18,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   HotelRate.init(
     {
-      id: DataTypes.UUIDV4,
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        allowNull: false,
+        unique: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
       hotel_id: DataTypes.UUIDV4,
       rate_name: DataTypes.STRING,
       price_per_night: DataTypes.NUMBER,

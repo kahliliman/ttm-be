@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   HotelBooking.init(
     {
-      id: DataTypes.UUIDV4,
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        allowNull: false,
+        unique: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
       check_in_date: DataTypes.DATE,
       check_out_date: DataTypes.DATE,
       night_duration: DataTypes.NUMBER,

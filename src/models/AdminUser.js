@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   AdminUser.init(
     {
-      id: DataTypes.UUIDV4,
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        allowNull: false,
+        unique: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
       email: DataTypes.STRING,
       firebase_id: DataTypes.STRING,
     },
