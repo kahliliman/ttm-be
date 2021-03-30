@@ -27,6 +27,8 @@ module.exports = (sequelize, DataTypes) => {
       logo_img: DataTypes.STRING,
       location: DataTypes.STRING,
       created_by: DataTypes.UUIDV4,
+      createdAt: { type: DataTypes.DATE, field: "created_at" },
+      updatedAt: { type: DataTypes.DATE, field: "updated_at" },
     },
     {
       sequelize,
