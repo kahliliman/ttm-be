@@ -19,10 +19,11 @@ const viewOneHotel = async (params) => {
         if (hotel) {
             return hotel
         } else {
-            return {message: "not found"}
+            return {status: 404,message: "not found"}
         }
     } catch (e) {
-        return e
+        console.log(e)
+        return {status: 404,message: "not found"}
     }
   };
 
