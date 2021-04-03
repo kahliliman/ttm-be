@@ -1,25 +1,40 @@
-import { Hotel } from "../../models";
+import e from 'express';
+import { viewAllHotel, createHotel, viewOneHotel } from '../../queries/hotelQuery'
 
 class HotelController {
-  static viewAll = (req, res) => {
-    return Hotel.findAll().then((data) => res.status(200).json(data));
+  static viewAll = async (req, res) => {
+    try {
+      const result = await viewAllHotel();
+
+      return res.status(200).json(result);
+    } catch (e) {
+      console.log(e)
+    }
   };
 
-  static viewOne = (req, res) => {
-    res.send("<h1>View One Hotel</h1>");
+  static viewOne = async (req, res) => {
+    try {
+      const result = await viewOneHotel(req.params);
+
+      if (result.name === "SequelizeDatabaseError") {
+        throw(e)
+      }
+      
+      return res.status(201).json(result)
+    } catch (e) {
+      return res.status(500).json({status:500,message:"Internal Server Error"})
+    }
   };
 
-  static create = (req, res) => {
-    const { name, logo_img, created_by, location } = req.body;
+  static create = async (req, res) => {
+    try {
+      const result = await createHotel(req.body);
 
-    return Hotel.create({
-      name,
-      logo_img,
-      location,
-      // created_by,
-    })
-      .then((data) => res.status(201).json({ ...data.dataValues }))
-      .catch((e) => console.log(e));
+      return res.status(201).json({ ...result.dataValues })
+    } catch (e) {
+      console.log(e)
+    }
+      
   };
 
   static edit = (req, res) => {
